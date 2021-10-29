@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <title>REGISTER PAGE</title>
+        <style>
+.bg-image-vertical {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: auto 20%;
+}
+
+
+        </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Vesper+Libre&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet"> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/49aa8f2023.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+    
+        <section class="vh-100">
+            <div class="container-fluid" >
+                    
+              <div class="row" >
+                <div class="col-sm-6 text-black" style="padding-left: 180px;">
+                    <div class="pt-1 mb-4" style="padding-top: 20px;margin-left: 5px;">
+                    <button class="btn btn-info btn-lg btn-block" type="button" style="width:10vw;;display: inline ;"><i class="fas fa-long-arrow-alt-left">&nbsp;Main Page</i></button>
+           </div>
+                  <div class="px-5 ms-xl-4" style="top: 50%;left: 50%;padding-top: 250;size:50vw;">
+                      
+                    <i class="fas fa-utensils fa-2x me-3 pt-5 mt-xl-4" style="color: #ee4949;"></i>
+                    <span class="h1 fw-bold mb-0"> CUBA</span>
+                  </div>
+          
+                  <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+          
+                    <form name="register" method="post" action="/action_page.php" onsubmit="return validateForm()" style="width: 23rem;">
+          
+                      <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">REGISTER</h3>
+          
+                      <div class="form-outline mb-4">
+                        <input type="text" id="form2Example18" name="name" class="form-control form-control-lg" placeholder="Enter Name" id="name"/>
+                        <label class="form-label" for="form2Example18">Name</label>
+                      </div>
+                      <div class="form-outline mb-4">
+                        <input type="email" id="form2Example18" name="email" class="form-control form-control-lg" placeholder="Enter email id" id="email"/>
+                        <label class="form-label" for="form2Example18">Email address</label>
+                      </div>
+                      <div class="form-outline mb-4">
+                        <input type="password" id="form2Example28"  name="password" class="form-control form-control-lg" placeholder="Enter password" id="password"/>
+                        <label class="form-label" for="form2Example28">Password</label>
+                      </div>
+                      <div class="form-outline mb-4">
+                        <input type="password" id="form2Example28" name="password1" class="form-control form-control-lg" placeholder="Confirm password" id="password1"/>
+                        <label class="form-label" for="form2Example28">Confirm Password</label>
+                      </div>
+                      <div class="pt-1 mb-4">
+                        <button class="btn btn-info btn-lg btn-block" type="submit">REGISTER</button>
+                      </div>
+         </form>
+    </div>
+ </div>
+<div class="col-sm-6 px-0 d-none d-sm-block">
+                  <img src="images/login.jpeg" alt="Login image" height="100%" width="100%">
+                </div>
+              </div>
+            </div>
+          </section>
+          <script>  
+            function validateForm(){  
+            var name=document.register.name.value;  
+            var email=document.register.email.value;  
+            var password=document.register.password.value; 
+            var password1=document.register.password1.value; 
+           if (name==null || name==""){  
+              alert("Name can't be blank");  
+              return false;  
+
+            }else if(email==null || email==""){  
+              alert("email can't be blank");  
+              return false;  
+            }
+            else if(password.length<8){  
+  alert("Password must be 8 characters long.");  
+  return false;  
+  }  
+            else{
+    if(password==password1){
+return true;
+}
+else{
+alert("Passwords must be same!");
+return false;
+}
+          }
+        }
+        
+            </script>
+    </body>
+</html>
