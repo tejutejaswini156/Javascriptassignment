@@ -1,0 +1,211 @@
+<html>
+    <head>
+        <title>Final</title>
+        <style>
+            body{
+                background-image: linear-gradient( rgb(250, 96, 96),rgb(126, 148, 247));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+table{
+    width: 30%;
+    margin: 40px auto;
+    background-color:lavender;
+}
+
+table.list{
+    text-align: center;
+    width: 100%;
+}
+
+td{
+    border: 1px solid rgb(204,200,200);
+    text-align: left;
+    padding: 8px 15px;
+}
+
+tr:nth-child(even), table.list thread> tr{
+    background-color: rgb(204,200,200);
+}
+
+input[type="text"],input[type="number"]{
+    width:91%;
+    padding:12px 20px;
+    margin:8px 0;
+    display: inline-block;
+    border: 1px solid rgb(165,161,161);
+    border-radius: 4px;
+}
+
+input[type="submit"],input[type="reset"]{
+    background: #eee;
+    padding:6px 12px;
+    margin:15px 0 10px;
+    display: inline-block;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+}
+
+input[type="submit"]:hover{
+    background: #637df1;
+}
+
+input[type="reset"]:hover{
+    background: #4b99d8;
+}
+
+button{
+    background:royalblue;
+    padding:6px 12px;
+    margin:15px 0 10px;
+    display: inline-block;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover{
+    background:royalblue;
+}
+        </style>
+    </head>
+    
+<body>
+    <h2 style="text-align: center;"> Enter Employee Information</h2>
+    <table style="width: 30%;">
+        <tr>
+            <td>
+                <form autocomplete="off" onsubmit="onFormSubmit()" style="margin-left: 13%;">
+                    <div>
+                        <label for="empid">Employee Id</label>
+                        <input type="text" name="empid" id="empid" >
+                    </div>
+                    <div>
+                        <label for="empname">Employee Name</label>
+                        <input type="text" name="empname" id="empname">
+                    </div>
+                    <div>
+                        <label for="role">Role</label>
+                        <input type="text" name="role" id="role">
+                    </div>
+                
+
+                    <div class="form_action--button" style="margin-left: 23%;">
+                        <input type="submit" value="Submit" style="background-color: royalblue;">&nbsp;&nbsp;
+                        <input type="reset" value="Reset" style="background-color: royalblue;">
+                    </div>
+                </form>
+                </td>
+                </tr>
+                </table>
+                <h2 style="text-align: center;"> Employee Data</h2>
+    <table class="list" id="storeList" style="width: 50%;">
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name" style="width:20%;margin-left: 50%;">
+                        <thead>
+                            <tr>
+                                <th>Employee Id</th>
+                                <th>Employee Name</th>
+                                <th>Role</th>
+            
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+        
+<script>
+var selectedRow = null;
+function onFormSubmit(e){
+    event.preventDefault();
+    var formData = readFormData();
+    if(selectedRow === null){
+        insertNewRecord(formData);
+    }
+    else{
+        updateRecord(formData);
+    }
+    resetForm();
+}
+
+//Retrieve the data
+function readFormData(){
+    var formData = {};
+    formData["empid"] = document.getElementById("empid").value;
+    formData["empname"] = document.getElementById("empname").value;
+    formData["role"] = document.getElementById("role").value;
+    return formData;
+}
+
+//Insert the data
+function insertNewRecord(data){
+    var table = document.getElementById("storeList").getElementsByTagName('tbody')[0];
+    var newRow = table.insertRow(table.length);
+    var cell1 = newRow.insertCell(0);
+        cell1.innerHTML = data.empid;
+    var cell2 = newRow.insertCell(1);
+        cell2.innerHTML = data.empname;
+    var cell3 = newRow.insertCell(2);
+        cell3.innerHTML = data.role;
+        var cell4 = newRow.insertCell(3);
+        
+        cell4.innerHTML = `<button onClick='onEdit(this)'  >Edit</button> <button onClick='onDelete(this)'>Delete</button>`
+}
+
+//Edit the data
+function onEdit(td){
+    selectedRow = td.parentElement.parentElement;
+    document.getElementById('empid').value = selectedRow.cells[0].innerHTML;
+    document.getElementById('empname').value = selectedRow.cells[1].innerHTML;
+    document.getElementById('role').value = selectedRow.cells[2].innerHTML;
+}
+
+function updateRecord(formData){
+    selectedRow.cells[0].innerHTML = formData.empid;
+    selectedRow.cells[1].innerHTML = formData.empname;
+    selectedRow.cells[2].innerHTML = formData.role;
+}
+
+//Delete the data
+function onDelete(td){
+    if(confirm('Do you want to delete this record?')){
+        row = td.parentElement.parentElement;
+        document.getElementById('storeList').deleteRow(row.rowIndex);
+    }
+    resetForm();
+}
+
+//Reset the data
+function resetForm(){
+    document.getElementById('empid').value = '';
+    document.getElementById('empname').value = '';
+    document.getElementById('role').value = '';
+}
+function myFunction() {
+
+var input = document.getElementById("myInput");
+var filter = input.value.toUpperCase();
+var table = document.getElementById("List");
+var tr = table.getElementsByTagName("tr");
+for (i = 0; i < tr.length; i++) {
+  var td = tr[i].getElementsByTagName("td")[0];
+  if (td) {
+    var txtValue = td.textContent || td.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      tr[i].style.display = "";
+    } else {
+      tr[i].style.display = "none";
+    }
+  }       
+}
+}
+</script>
+</body>
+</html>
